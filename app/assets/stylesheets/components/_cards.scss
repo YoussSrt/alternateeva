@@ -1,0 +1,248 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding: 32px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .category {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .city {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 16px;
+  }
+
+  .card-bottom {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+  }
+
+  .details-btn {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #f8f8f8;
+      border-color: #ccc;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.tracking-wider {
+  letter-spacing: 1.5px;
+}
+
+.w-fit {
+  width: fit-content;
+}
+
+.badge {
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  font-size: 11px;
+  border-color: #e9ecef !important;
+}
+
+.hover-shadow-lg {
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.04)!important;
+  }
+}
+
+.btn-outline-dark {
+  border-width: 1.5px;
+  font-weight: 400;
+
+  &:hover {
+    background-color: #212529;
+    color: white;
+    transform: translateY(-1px);
+  }
+  transition: all 0.3s ease;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #e9ecef;
+
+  &[data-category="Tiers-lieu"] {
+    background-color: #FFF5F5;
+    color: #E53E3E;
+    border-color: #FED7D7;
+  }
+
+  &[data-category="Lieu écologique"] {
+    background-color: #F0FFF4;
+    color: #38A169;
+    border-color: #C6F6D5;
+  }
+
+  &[data-category="Espace culturel"] {
+    background-color: #EBF8FF;
+    color: #3182CE;
+    border-color: #BEE3F8;
+  }
+
+  &[data-category="Café créatif"] {
+    background-color: #FFFAF0;
+    color: #DD6B20;
+    border-color: #FEEBC8;
+  }
+
+  &[data-category="Friche culturelle"] {
+    background-color: #FAF5FF;
+    color: #805AD5;
+    border-color: #E9D8FD;
+  }
+
+  &[data-category="Centre culturel"] {
+    background-color: #F0FFFF;
+    color: #00A3C4;
+    border-color: #B2F5EA;
+  }
+
+  &[data-category="Lieu culturel"] {
+    background-color: #FFF5F7;
+    color: #D53F8C;
+    border-color: #FED7E2;
+  }
+}
+
+.hover-lift {
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: #e9ecef;
+  }
+}
+
+.card-title {
+  color: #2D3748;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.link-dark {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2D3748;
+
+  i {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    i {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.carousel {
+  .carousel-image {
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 5%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .carousel-indicators {
+    margin-bottom: 1rem;
+
+    button {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: white;
+      opacity: 0.5;
+      margin: 0 4px;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover {
+    .carousel-control-prev,
+    .carousel-control-next {
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

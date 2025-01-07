@@ -1,1 +1,109 @@
-<h1><%= @place.name %></h1>
+<div class="bg-light min-vh-100">
+  <div class="container py-5">
+    <%= link_to places_path, class: "text-decoration-none d-inline-flex align-items-center mb-4 text-muted" do %>
+      <i class="bi bi-arrow-left me-2"></i>
+      <span>Retour aux lieux</span>
+    <% end %>
+
+    <div class="bg-white rounded-4 shadow-sm p-4 p-lg-5 mb-5">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="category-badge mb-4" data-category="<%= @place.category %>">
+            <%= @place.category %>
+          </div>
+
+          <h1 class="display-5 mb-4"><%= @place.name %></h1>
+
+          <div class="d-flex align-items-center text-muted mb-4">
+            <i class="bi bi-geo-alt me-2"></i>
+            <span><%= @place.address %>, <%= @place.city %></span>
+          </div>
+
+          <div class="mb-5">
+            <h2 class="h5 mb-3">À propos</h2>
+            <p class="text-muted"><%= @place.description %></p>
+          </div>
+
+          <% if @place.tags.present? %>
+            <div class="mb-5">
+              <h2 class="h5 mb-3">Tags</h2>
+              <div class="d-flex flex-wrap gap-2">
+                <% @place.tags.split(',').each do |tag| %>
+                  <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+                    <%= tag.strip %>
+                  </span>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card border-0 rounded-4 bg-light">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-4">Informations pratiques</h2>
+
+              <% if @place.website.present? %>
+                <div class="mb-4">
+                  <div class="text-muted small mb-2">Site web</div>
+                  <%= link_to @place.website, @place.website,
+                      class: "text-decoration-none text-dark",
+                      target: "_blank" %>
+                </div>
+              <% end %>
+
+              <div class="mb-4">
+                <div class="text-muted small mb-2">Adresse</div>
+                <p class="mb-0"><%= @place.address %></p>
+                <p class="mb-0"><%= @place.city %></p>
+              </div>
+
+              <%= link_to "Voir sur Google Maps",
+                  "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@place.address + ' ' + @place.city)}",
+                  class: "btn btn-dark rounded-pill w-100",
+                  target: "_blank" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if @place.photos.attached? %>
+      <div class="bg-white rounded-4 shadow-sm overflow-hidden">
+        <h2 class="h5 p-4 mb-0 border-bottom">Photos du lieu</h2>
+        <div id="placeCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% @place.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index.zero? %>">
+                <%= image_tag photo, class: "d-block w-100", style: "height: 400px; object-fit: cover;" %>
+              </div>
+            <% end %>
+          </div>
+
+          <% if @place.photos.count > 1 %>
+            <button class="carousel-control-prev" type="button" data-bs-target="#placeCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#placeCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Suivant</span>
+            </button>
+
+            <div class="carousel-indicators">
+              <% @place.photos.each_with_index do |photo, index| %>
+                <button type="button"
+                        data-bs-target="#placeCarousel"
+                        data-bs-slide-to="<%= index %>"
+                        class="<%= 'active' if index.zero? %>"
+                        aria-current="<%= 'true' if index.zero? %>"
+                        aria-label="Slide <%= index + 1 %>">
+                </button>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
